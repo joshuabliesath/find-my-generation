@@ -18,9 +18,14 @@ class GenerationRank:
     approximate: bool  # True if top age bucket (100+) had to be spread out
 
 
+def latest_population_file(data_dir=DATA_DIR):
+    """Newest data/population_<year>.json (highest year in the file name)."""
+    return max(Path(data_dir).glob("population_[0-9][0-9][0-9][0-9].json"))
+
+
 def load_data(data_dir=DATA_DIR):
     gens = json.loads((Path(data_dir) / "generations.json").read_text())["generations"]
-    pop = json.loads((Path(data_dir) / "population_2025.json").read_text())
+    pop = json.loads(latest_population_file(data_dir).read_text())
     return gens, pop
 
 
