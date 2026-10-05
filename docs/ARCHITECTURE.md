@@ -15,6 +15,8 @@ docs/            these docs
 ## Modules
 - `core/rank.py` — A math. `rank_birth_year(year)` → list of `GenerationRank` (older %, younger %, approximate flag) per generation. Helpers: `load_data`, `births_by_year`.
 - `tests/test_rank.py` — tests for rank (middle, boundary, top bucket, invalid input).
+- `core/membership.py` — B math. `membership_birth_year(year)` → list of `Membership` (label, whole %), own generation first, then at most one neighbour. Constant `FADE_YEARS`. Uses `check_birth_year` from rank.py.
+- `tests/test_membership.py` — tests from every B-METHOD.md example and edge case.
 
 ## How to run
 From the project folder, in PowerShell:

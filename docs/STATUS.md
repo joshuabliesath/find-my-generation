@@ -9,7 +9,7 @@ Statuses: todo / in progress / done / blocked
 | T03 | Population data file | sonnet | T01 | done | data/population_2025.json (Census Vintage 2025, ages 0-100+). Tests pass. |
 | T04 | Decide B method (discussion) | opus | – | done | S-curve blend, max 2 gens, 8-yr fade from each Pew line. See B-METHOD.md. |
 | T05 | Core math: A (rank) | sonnet | T02, T03 | done | core/rank.py + tests pass. Same-year = half older; 100+ bucket spread evenly 1901-1925 (approximate). |
-| T06 | Core math: B (membership) | sonnet | T04, T05 | todo | |
+| T06 | Core math: B (membership) | sonnet | T04, T05 | done | core/membership.py + tests pass (all B-METHOD examples). Input check moved to shared `check_birth_year` in rank.py. |
 | T07 | Terminal front end | haiku | T05, T06 | todo | |
 | T08 | Data update script | sonnet | T03 | todo | |
 | T09 | Final docs pass | haiku | all | todo | |

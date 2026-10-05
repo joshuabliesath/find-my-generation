@@ -41,9 +41,8 @@ def births_by_year(pop):
     return out
 
 
-def rank_birth_year(birth_year, data_dir=DATA_DIR):
-    """birth year -> list of GenerationRank, oldest generation first."""
-    gens, pop = load_data(data_dir)
+def check_birth_year(birth_year, gens, pop):
+    """Shared input check (used by rank and membership). Raises ValueError."""
     est = pop["vintage"]
     first_year = gens[0]["start_year"]
     if not isinstance(birth_year, int) or isinstance(birth_year, bool):
@@ -52,6 +51,13 @@ def rank_birth_year(birth_year, data_dir=DATA_DIR):
         raise ValueError(f"Birth year {birth_year} is in the future (data runs to {est}).")
     if birth_year < first_year:
         raise ValueError(f"Birth year {birth_year} is too early; data starts at {first_year}.")
+
+
+def rank_birth_year(birth_year, data_dir=DATA_DIR):
+    """birth year -> list of GenerationRank, oldest generation first."""
+    gens, pop = load_data(data_dir)
+    est = pop["vintage"]
+    check_birth_year(birth_year, gens, pop)
 
     births = births_by_year(pop)
     top_bucket_last_year = est - pop["top_age_group"]["age"]
