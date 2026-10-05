@@ -1,7 +1,5 @@
 # Data
 
-_Filled in by T02, T03, T08._
-
 ## Generations
 Source: Pew Research (URLs and date checked are inside the file). File: `data/generations.json`.
 

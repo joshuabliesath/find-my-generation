@@ -8,8 +8,8 @@ Start here. Reading this file + `STATUS.md` should be enough to know where the p
 | `DECISIONS.md` | Every design decision and why | Changing behavior |
 | `ARCHITECTURE.md` | How the code is organized and how pieces connect | Writing code |
 | `DATA.md` | Data sources, file formats, how to update yearly | Touching data |
-| `B-METHOD.md` | How membership % (B) is calculated: rule, formula, worked examples | Working on B (T06) |
-| `tickets/` | One file per ticket; self-contained instructions | Running that ticket |
+| `B-METHOD.md` | How membership % (B) is calculated: rule, formula, worked examples | Working on B |
+| `tickets/` | One file per ticket (`done/` = finished); `_TEMPLATE.md` for new ones | Running that ticket |
 
 ## What the app does
 Input: birth year. Output:
@@ -22,6 +22,5 @@ Input: birth year. Output:
 - Data is saved as static JSON files in `data/`, labelled by year. The app never goes online.
 - Data gets refreshed yearly or every 5 years by a helper script.
 
-## Future (not ticketed yet)
-- HTML dashboard (Sonnet), with B as the main visual.
-- iPhone app: rewrite the math in Swift and reuse the same JSON data (Sonnet; Opus only if it gets stuck).
+## Future
+See "Next up" in `STATUS.md`.

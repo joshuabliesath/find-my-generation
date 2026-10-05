@@ -17,4 +17,4 @@ Newest at bottom. Format: date — decision — why.
 - 2026-10-05 — A rank: people born in your own birth year count half older / half younger — simple, symmetric, no tie.
 - 2026-10-05 — A rank: age = 2025 − birth year (Census estimate year). Age 100+ bucket is spread evenly over birth years 1901–1925 and flagged `approximate` only when your birth year is ≤1925 — true spread unknown; only affects Greatest. Valid birth years: 1901–2025, else ValueError.
 - 2026-10-05 — T06: moved birth-year validation out of rank_birth_year into shared check_birth_year() (core/rank.py) so A and B reject bad input identically.
-- 2026-10-05 � T08: app picks the newest `population_<year>.json` by file name (`latest_population_file` in core/rank.py). update_data.py replaced convert_population.py; validates ages 0-100, sum vs Census total, plausible total.
+- 2026-10-05 — T08: app picks the newest `population_<year>.json` by file name (`latest_population_file` in core/rank.py). update_data.py replaced convert_population.py; validates ages 0-100, sum vs Census total, plausible total.
