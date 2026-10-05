@@ -1,7 +1,7 @@
 # HANDOFF
 
 Model: sonnet
-Ticket: docs/tickets/T04-b-method-discussion.md
+Ticket: docs/tickets/T05-core-rank.md
 
 Read only: CLAUDE.md, docs/STATUS.md, the ticket file.
 Run that ticket only, then follow "Finishing a ticket" in CLAUDE.md.

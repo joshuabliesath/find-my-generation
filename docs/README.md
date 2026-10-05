@@ -8,11 +8,12 @@ Start here. Reading this file + `STATUS.md` should be enough to know where the p
 | `DECISIONS.md` | Every design decision and why | Changing behavior |
 | `ARCHITECTURE.md` | How the code is organized and how pieces connect | Writing code |
 | `DATA.md` | Data sources, file formats, how to update yearly | Touching data |
+| `B-METHOD.md` | How membership % (B) is calculated: rule, formula, worked examples | Working on B (T06) |
 | `tickets/` | One file per ticket; self-contained instructions | Running that ticket |
 
 ## What the app does
 Input: birth year. Output:
-- **B (headline): Membership.** How much of each generation you are, e.g. "80% Millennial / 20% Gen X". Method decided in T04.
+- **B (headline): Membership.** How much of each generation you are, e.g. "80% Millennial / 20% Gen X". Method: see `B-METHOD.md`.
 - **A: Rank.** Where you fall inside each generation, by US population, e.g. "older than 62% of Millennials".
 
 ## Shape

@@ -7,7 +7,7 @@ Statuses: todo / in progress / done / blocked
 | T01 | Project setup | haiku | – | done | Python 3.12, .venv, pytest passes, first commit made. |
 | T02 | Generation definitions file | haiku | T01 | done | data/generations.json + tests pass. Greatest start (1901) and Alpha start (2013) from secondary sources; see DATA.md. |
 | T03 | Population data file | sonnet | T01 | done | data/population_2025.json (Census Vintage 2025, ages 0-100+). Tests pass. |
-| T04 | Decide B method (discussion) | sonnet | – | todo | Headline stat. No code. |
+| T04 | Decide B method (discussion) | opus | – | done | S-curve blend, max 2 gens, 8-yr fade from each Pew line. See B-METHOD.md. |
 | T05 | Core math: A (rank) | sonnet | T02, T03 | todo | |
 | T06 | Core math: B (membership) | sonnet | T04, T05 | todo | |
 | T07 | Terminal front end | haiku | T05, T06 | todo | |
