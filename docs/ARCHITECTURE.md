@@ -16,6 +16,7 @@ docs/            these docs
 - `core/rank.py` — A math. `rank_birth_year(year)` → list of `GenerationRank` (older %, younger %, approximate flag) per generation. Helpers: `load_data`, `births_by_year`.
 - `tests/test_rank.py` — tests for rank (middle, boundary, top bucket, invalid input).
 - `core/membership.py` — B math. `membership_birth_year(year)` → list of `Membership` (label, whole %), own generation first, then at most one neighbour. Constant `FADE_YEARS`. Uses `check_birth_year` from rank.py.
+- `tui/app.py` — terminal front end (Rich). Asks birth year, shows B headline then A table + source footer, loops until `q`. Display only; calls `core/`.
 - `tests/test_membership.py` — tests from every B-METHOD.md example and edge case.
 
 ## How to run
@@ -26,4 +27,7 @@ pip install -r requirements.txt     # install (first time only)
 pytest                              # run tests
 ```
 If activation is blocked: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`.
-_(app run command added in T07)_
+Run the app:
+```
+python -m tui.app                   # enter a birth year; q to quit
+```
