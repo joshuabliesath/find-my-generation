@@ -11,3 +11,4 @@ Newest at bottom. Format: date — decision — why.
 - 2026-10-05 — Terminal front end uses Rich, not a full-screen framework — keep v1 simple.
 - 2026-10-05 — Each ticket assigned the cheapest model that can do it — cost control.
 - 2026-10-05 — Greatest Generation starts 1901 and Gen Alpha starts 2013, Alpha open-ended — Pew pages fetched did not state these; taken from secondary summaries, flagged in file notes.
+- 2026-10-05 � Population = Census NC-EST2025-AGESEX-RES (Vintage 2025), single year of age 0-100+, both sexes � latest official national estimate with single-year ages; top age is open-ended 100+.
