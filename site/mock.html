@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find my generation</title>
+<style>
+:root {
+  --bg: #f6f7f9; --card: #fff; --text: #1c2430; --muted: #5d6877; --line: #dde1e7;
+  --accent: #2f6fdb;
+  --c-a: #2f6fdb;  /* main generation */
+  --c-b: #e08a1e;  /* second generation */
+  --bar-older: #9aa5b5; --bar-younger: #2f6fdb;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12161c; --card: #1b212a; --text: #e8ecf1; --muted: #98a3b3; --line: #2c3541;
+    --accent: #6ea0f5; --c-a: #6ea0f5; --c-b: #f0a649;
+    --bar-older: #6b778a; --bar-younger: #6ea0f5;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 640px; margin: 0 auto; padding: 24px 16px 40px; }
+h1 { font-size: 1.4rem; margin: 0 0 16px; }
+form { display: flex; gap: 8px; margin-bottom: 8px; }
+input { flex: 1; min-width: 0; font: inherit; padding: 10px 12px; color: var(--text);
+  background: var(--card); border: 1px solid var(--line); border-radius: 8px; }
+button { font: inherit; padding: 10px 16px; border: 0; border-radius: 8px;
+  background: var(--accent); color: #fff; cursor: pointer; }
+.error { color: #b45309; font-size: .9rem; min-height: 1.3em; margin: 0 0 12px; }
+@media (prefers-color-scheme: dark) { .error { color: #f0b35c; } }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+.label { color: var(--muted); font-size: .85rem; text-transform: uppercase; letter-spacing: .05em; }
+.headline { font-size: 1.6rem; font-weight: 700; margin: 4px 0 14px; line-height: 1.25; }
+.headline .a { color: var(--c-a); } .headline .b { color: var(--c-b); }
+.split { display: flex; height: 22px; border-radius: 11px; overflow: hidden; }
+.split span:first-child { background: var(--c-a); } .split span:last-child { background: var(--c-b); }
+.legend { display: flex; justify-content: space-between; font-size: .85rem; color: var(--muted); margin-top: 6px; }
+.gen { padding: 12px 0; border-top: 1px solid var(--line); }
+.gen:first-of-type { border-top: 0; }
+.gen-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.gen-name { font-weight: 600; } .gen-years { color: var(--muted); font-size: .85rem; }
+.bar { display: flex; height: 10px; border-radius: 5px; overflow: hidden; margin: 8px 0 4px; background: var(--line); }
+.bar .older { background: var(--bar-older); } .bar .younger { background: var(--bar-younger); }
+.nums { display: flex; justify-content: space-between; font-size: .85rem; color: var(--muted); }
+footer { color: var(--muted); font-size: .8rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Find my generation</h1>
+
+  <form onsubmit="return false">
+    <input type="text" inputmode="numeric" placeholder="Birth year, e.g. 1985" value="1985" aria-label="Birth year">
+    <button type="submit">Go</button>
+  </form>
+  <!-- Error message shown here for bad input, e.g.: "Please enter a whole number, e.g. 1985." -->
+  <p class="error" role="alert"></p>
+
+  <section class="card">
+    <div class="label">Born 1985</div>
+    <div class="headline"><span class="a">82% Millennials</span> + <span class="b">18% Gen X</span></div>
+    <div class="split" role="img" aria-label="82% Millennials, 18% Gen X">
+      <span style="width:82%"></span><span style="width:18%"></span>
+    </div>
+    <div class="legend"><span>Millennials</span><span>Gen X</span></div>
+  </section>
+
+  <section class="card">
+    <div class="label">How you compare with each generation</div>
+
+    <div class="gen"><div class="gen-top"><span class="gen-name">Greatest Generation</span><span class="gen-years">1901-1927</span></div>
+      <div class="bar"><span class="older" style="width:100%"></span></div>
+      <div class="nums"><span>100.0% older than you</span><span>0.0% younger than you</span></div></div>
+
+    <div class="gen"><div class="gen-top"><span class="gen-name">Silent Generation</span><span class="gen-years">1928-1945</span></div>
+      <div class="bar"><span class="older" style="width:100%"></span></div>
+      <div class="nums"><span>100.0% older than you</span><span>0.0% younger than you</span></div></div>
+
+    <div class="gen"><div class="gen-top"><span class="gen-name">Baby Boomers</span><span class="gen-years">1946-1964</span></div>
+      <div class="bar"><span class="older" style="width:100%"></span></div>
+      <div class="nums"><span>100.0% older than you</span><span>0.0% younger than you</span></div></div>
+
+    <div class="gen"><div class="gen-top"><span class="gen-name">Generation X</span><span class="gen-years">1965-1980</span></div>
+      <div class="bar"><span class="older" style="width:100%"></span></div>
+      <div class="nums"><span>100.0% older than you</span><span>0.0% younger than you</span></div></div>
+
+    <div class="gen"><div class="gen-top"><span class="gen-name">Millennials</span><span class="gen-years">1981-1996</span></div>
+      <div class="bar"><span class="older" style="width:27.2%"></span><span class="younger" style="width:72.8%"></span></div>
+      <div class="nums"><span>27.2% older than you</span><span>72.8% younger than you</span></div></div>
+
+    <div class="gen"><div class="gen-top"><span class="gen-name">Generation Z</span><span class="gen-years">1997-2012</span></div>
+      <div class="bar"><span class="younger" style="width:100%"></span></div>
+      <div class="nums"><span>0.0% older than you</span><span>100.0% younger than you</span></div></div>
+
+    <div class="gen"><div class="gen-top"><span class="gen-name">Generation Alpha</span><span class="gen-years">2013-2025</span></div>
+      <div class="bar"><span class="younger" style="width:100%"></span></div>
+      <div class="nums"><span>0.0% older than you</span><span>100.0% younger than you</span></div></div>
+  </section>
+
+  <footer>
+    <!-- Shown only when any generation is approximate: -->
+    <!-- <p>* approximate (people aged 100+ spread evenly over birth years)</p> -->
+    <p>Source: US Census Bureau (population estimates), Vintage 2025. Generations: Pew Research Center.</p>
+  </footer>
+</main>
+</body>
+</html>
