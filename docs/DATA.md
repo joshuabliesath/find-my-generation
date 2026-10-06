@@ -24,4 +24,5 @@ Top age group: age 100 means "100 and older" (open-ended). Flagged in `top_age_g
 3. Run: `python scripts/update_data.py data/raw/<file>.csv` (uses the newest year in the file; add `--year 2026` to pick another).
 4. Check: the script prints total and number of ages (expect ~335-350 million, 101 ages). It stops with an error if ages 0-100 are not all present, ages don't sum to Census's total (within 0.1%), or the total is implausible.
 5. Run `python -m pytest`. Old `data/population_<year>.json` files are kept; the app automatically uses the newest.
-6. Commit the new raw and JSON files. Note: `tests/test_population.py` still checks the 2025 file only.
+6. Run `python scripts/sync_site_data.py` — copies `generations.json` and the newest population file into `site/data/` (as `generations.json`, `population.json`) so the website uses current data. Also rerun it after editing generation years.
+7. Commit the new raw and JSON files, plus `site/data/`. Note: `tests/test_population.py` still checks the 2025 file only.

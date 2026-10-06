@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find my generation</title>
+<style>
+:root {
+  --bg: #f6f7f9; --card: #fff; --text: #1c2430; --muted: #5d6877; --line: #dde1e7;
+  --accent: #2f6fdb;
+  --c-a: #2f6fdb;  /* main generation */
+  --c-b: #e08a1e;  /* second generation */
+  --bar-older: #9aa5b5; --bar-younger: #2f6fdb;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12161c; --card: #1b212a; --text: #e8ecf1; --muted: #98a3b3; --line: #2c3541;
+    --accent: #6ea0f5; --c-a: #6ea0f5; --c-b: #f0a649;
+    --bar-older: #6b778a; --bar-younger: #6ea0f5;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 640px; margin: 0 auto; padding: 24px 16px 40px; }
+h1 { font-size: 1.4rem; margin: 0 0 16px; }
+form { display: flex; gap: 8px; margin-bottom: 8px; }
+input { flex: 1; min-width: 0; font: inherit; padding: 10px 12px; color: var(--text);
+  background: var(--card); border: 1px solid var(--line); border-radius: 8px; }
+button { font: inherit; padding: 10px 16px; border: 0; border-radius: 8px;
+  background: var(--accent); color: #fff; cursor: pointer; }
+.error { color: #b45309; font-size: .9rem; min-height: 1.3em; margin: 0 0 12px; }
+@media (prefers-color-scheme: dark) { .error { color: #f0b35c; } }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+.label { color: var(--muted); font-size: .85rem; text-transform: uppercase; letter-spacing: .05em; }
+.headline { font-size: 1.6rem; font-weight: 700; margin: 4px 0 14px; line-height: 1.25; }
+.headline .a { color: var(--c-a); } .headline .b { color: var(--c-b); }
+.split { display: flex; height: 22px; border-radius: 11px; overflow: hidden; }
+.split span:first-child { background: var(--c-a); } .split span:last-child:not(:first-child) { background: var(--c-b); }
+.legend { display: flex; justify-content: space-between; font-size: .85rem; color: var(--muted); margin-top: 6px; }
+.gen { padding: 12px 0; border-top: 1px solid var(--line); }
+.gen:first-of-type { border-top: 0; }
+.gen-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.gen-name { font-weight: 600; } .gen-years { color: var(--muted); font-size: .85rem; }
+.bar { display: flex; height: 10px; border-radius: 5px; overflow: hidden; margin: 8px 0 4px; background: var(--line); }
+.bar .older { background: var(--bar-older); } .bar .younger { background: var(--bar-younger); }
+.nums { display: flex; justify-content: space-between; gap: 8px; font-size: .85rem; color: var(--muted); }
+footer { color: var(--muted); font-size: .8rem; }
+footer p { margin: 0 0 6px; }
+[hidden] { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Find my generation</h1>
+
+  <form id="form">
+    <input id="year" type="text" inputmode="numeric" autocomplete="off" placeholder="Birth year, e.g. 1985" aria-label="Birth year">
+    <button type="submit">Go</button>
+  </form>
+  <p class="error" id="error" role="alert"></p>
+
+  <div id="results" hidden>
+    <section class="card">
+      <div class="label" id="born"></div>
+      <div class="headline" id="headline"></div>
+      <div class="split" id="split" role="img"></div>
+      <div class="legend" id="legend"></div>
+    </section>
+
+    <section class="card">
+      <div class="label">How you compare with each generation</div>
+      <div id="gens"></div>
+    </section>
+  </div>
+
+  <footer>
+    <p id="approx" hidden>* approximate (people aged 100+ spread evenly over birth years)</p>
+    <p id="source">Loading data…</p>
+  </footer>
+</main>
+
+<script src="core.js"></script>
+<script>
+(function () {
+  "use strict";
+  const $ = (id) => document.getElementById(id);
+  let gens = null, pop = null;
+
+  function el(tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+  const fmt = (x) => x.toFixed(1);
+
+  function parseYear(s) {
+    s = s.trim();
+    return /^-?\d+$/.test(s) ? parseInt(s, 10) : NaN;
+  }
+
+  function show(year) {
+    const b = FMG.membershipBirthYear(year, gens, pop);
+    const a = FMG.rankBirthYear(year, gens, pop);
+
+    $("born").textContent = "Born " + year;
+    const head = $("headline"), legend = $("legend"), split = $("split");
+    head.textContent = ""; legend.textContent = ""; split.textContent = "";
+    b.forEach((p, i) => {
+      if (i) head.append(" + ");
+      head.append(el("span", i ? "b" : "a", p.pct + "% " + p.label));
+      const seg = el("span"); seg.style.width = p.pct + "%"; split.append(seg);
+      legend.append(el("span", "", p.label));
+    });
+    split.setAttribute("aria-label", b.map((p) => p.pct + "% " + p.label).join(", "));
+
+    const box = $("gens"); box.textContent = "";
+    let anyApprox = false;
+    for (const g of a) {
+      const star = g.approximate ? " *" : "";
+      anyApprox = anyApprox || g.approximate;
+      const row = el("div", "gen");
+      const top = el("div", "gen-top");
+      top.append(el("span", "gen-name", g.name), el("span", "gen-years", g.start_year + "-" + g.end_year));
+      const bar = el("div", "bar");
+      if (g.older_pct > 0) { const s = el("span", "older"); s.style.width = g.older_pct + "%"; bar.append(s); }
+      if (g.younger_pct > 0) { const s = el("span", "younger"); s.style.width = g.younger_pct + "%"; bar.append(s); }
+      const nums = el("div", "nums");
+      nums.append(el("span", "", fmt(g.older_pct) + "% older than you"),
+                  el("span", "", fmt(g.younger_pct) + "% younger than you" + star));
+      row.append(top, bar, nums);
+      box.append(row);
+    }
+    $("approx").hidden = !anyApprox;
+    $("results").hidden = false;
+  }
+
+  function run() {
+    $("error").textContent = "";
+    if (!gens) return;
+    const year = parseYear($("year").value);
+    if (Number.isNaN(year)) {
+      $("error").textContent = "Please enter a whole number, e.g. 1985.";
+      $("results").hidden = true;
+      return;
+    }
+    try { show(year); }
+    catch (e) { $("error").textContent = e.message; $("results").hidden = true; }
+  }
+
+  $("form").addEventListener("submit", (e) => { e.preventDefault(); run(); });
+
+  Promise.all([
+    fetch("data/generations.json").then((r) => { if (!r.ok) throw 0; return r.json(); }),
+    fetch("data/population.json").then((r) => { if (!r.ok) throw 0; return r.json(); }),
+  ]).then(([g, p]) => {
+    gens = g.generations; pop = p;
+    $("source").textContent = "Source: US Census Bureau (population estimates), " + p.dataset +
+      ", Vintage " + p.vintage + ". Generations: Pew Research Center.";
+    $("year").value = "1985";
+    run();
+  }).catch(() => {
+    $("source").textContent = "";
+    $("error").textContent = "Could not load data files. Serve the site over http (not file://).";
+  });
+})();
+</script>
+</body>
+</html>

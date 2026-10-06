@@ -22,5 +22,8 @@ Input: birth year. Output:
 - Data is saved as static JSON files in `data/`, labelled by year. The app never goes online.
 - Data gets refreshed yearly or every 5 years by a helper script.
 
+## Live site
+`https://<github-username>.github.io/find-my-generation/` (placeholder until published; steps in `ARCHITECTURE.md`).
+
 ## Future
 See "Next up" in `STATUS.md`.

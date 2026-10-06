@@ -15,7 +15,7 @@ Statuses: todo / in progress / done / blocked
 | T09 | Final docs pass | haiku | all | done | Docs trimmed and checked against code; finished tickets in `tickets/done/`. |
 | T10 | Decide dashboard look (discussion + mock) | sonnet | – | done | site/mock.html approved; spec in DASHBOARD-DESIGN.md. |
 | T11 | Port core math to JavaScript | sonnet | T06 | done | site/core.js; parity check passes all 131 cases (every year + bad inputs). |
-| T12 | Build dashboard + GitHub Pages | sonnet | T10, T11 | todo | Static site in `site/`. |
+| T12 | Build dashboard + GitHub Pages | sonnet | T10, T11 | done | site/index.html + scripts/sync_site_data.py. Numbers match Python for 1950/1985/2010. Browser/phone-width check NOT done by Claude (server blocked); user to eyeball. Pages not set up (see ARCHITECTURE.md). |
 
 Suggested order: T01 → … → T09 (done), then T10 → T11 → T12
 (T10 and T11 are independent.)

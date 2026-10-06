@@ -1,0 +1,17 @@
+{
+  "source_urls": [
+    "https://www.pewresearch.org/short-reads/2019/01/17/where-millennials-end-and-generation-z-begins/",
+    "https://www.pewresearch.org/politics/2015/09/03/the-whys-and-hows-of-generations-research/"
+  ],
+  "date_checked": "2026-10-05",
+  "notes": "Greatest start year 1901 and Gen Alpha start year 2013 (Gen Z ends 2012) are not stated on the two pages above; taken from secondary summaries of Pew definitions. Verify against Pew when possible.",
+  "generations": [
+    {"name": "Greatest Generation", "label": "Greatest", "start_year": 1901, "end_year": 1927},
+    {"name": "Silent Generation", "label": "Silent", "start_year": 1928, "end_year": 1945},
+    {"name": "Baby Boomers", "label": "Boomers", "start_year": 1946, "end_year": 1964},
+    {"name": "Generation X", "label": "Gen X", "start_year": 1965, "end_year": 1980},
+    {"name": "Millennials", "label": "Millennials", "start_year": 1981, "end_year": 1996},
+    {"name": "Generation Z", "label": "Gen Z", "start_year": 1997, "end_year": 2012},
+    {"name": "Generation Alpha", "label": "Gen Alpha", "start_year": 2013, "end_year": null}
+  ]
+}

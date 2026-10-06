@@ -19,3 +19,4 @@ Newest at bottom. Format: date — decision — why.
 - 2026-10-05 — T06: moved birth-year validation out of rank_birth_year into shared check_birth_year() (core/rank.py) so A and B reject bad input identically.
 - 2026-10-05 — T08: app picks the newest `population_<year>.json` by file name (`latest_population_file` in core/rank.py). update_data.py replaced convert_population.py; validates ages 0-100, sum vs Census total, plausible total.
 - 2026-10-05 — T10 dashboard look: split bar for B, per-generation bar cards for A, auto light/dark, clean tone, no extra chart, plain CSS/no libraries. Spec in DASHBOARD-DESIGN.md.
+- 2026-10-05 — T12: site loads data from site/data/ copies (sync_site_data.py, fixed file names) so index.html never changes on data updates. Pages can't serve /site directly; deploy option left for user (ARCHITECTURE.md).
