@@ -14,7 +14,7 @@ Statuses: todo / in progress / done / blocked
 | T08 | Data update script | sonnet | T03 | done | scripts/update_data.py (replaces convert_population.py); app uses newest population file; rerun reproduces 2025 JSON. |
 | T09 | Final docs pass | haiku | all | done | Docs trimmed and checked against code; finished tickets in `tickets/done/`. |
 | T10 | Decide dashboard look (discussion + mock) | sonnet | – | done | site/mock.html approved; spec in DASHBOARD-DESIGN.md. |
-| T11 | Port core math to JavaScript | sonnet | T06 | todo | Parity-tested against Python. |
+| T11 | Port core math to JavaScript | sonnet | T06 | done | site/core.js; parity check passes all 131 cases (every year + bad inputs). |
 | T12 | Build dashboard + GitHub Pages | sonnet | T10, T11 | todo | Static site in `site/`. |
 
 Suggested order: T01 → … → T09 (done), then T10 → T11 → T12
