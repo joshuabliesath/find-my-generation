@@ -23,7 +23,7 @@ Input: birth year. Output:
 - Data gets refreshed yearly or every 5 years by a helper script.
 
 ## Live site
-`https://<github-username>.github.io/find-my-generation/` (placeholder until published; steps in `ARCHITECTURE.md`).
+https://joshuabliesath.github.io/find-my-generation/ (deployed by GitHub Actions; see `ARCHITECTURE.md`).
 
 ## Future
 See "Next up" in `STATUS.md`.

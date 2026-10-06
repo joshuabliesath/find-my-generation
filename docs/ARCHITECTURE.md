@@ -32,11 +32,11 @@ python -m http.server 8000           # then open http://localhost:8000
 Must use a server; opening `index.html` directly (file://) can't load the data.
 
 ## Website: publish on GitHub Pages
-Pages can only serve from repo root or `/docs`, not `/site`. Options (pick one; not done yet):
+Pages can only serve from repo root or `/docs`, not `/site`, so a workflow deploys `site/`. Repo must be public (free plan). Options considered:
 1. **GitHub Actions deploy (chosen):** workflow `.github/workflows/pages.yml` publishes `site/` on every push to main that touches `site/`. One-time: Settings → Pages → Source = "GitHub Actions". Live at https://joshuabliesath.github.io/find-my-generation/
 2. Move/copy `site/` contents to `/docs` — conflicts with the existing `docs/` folder; not recommended.
 3. Branch `gh-pages` containing only `site/` contents (Settings → Pages → Deploy from branch → `gh-pages` / root).
-Ask Claude to set up option 1 or 3 when ready. After publishing, fill in the URL in `docs/README.md`.
+
 
 ## How to run
 From the project folder, in PowerShell:
